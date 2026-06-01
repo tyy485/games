@@ -56,6 +56,54 @@
         a {
             text-decoration: none;
         }
+
+        /* 自定义弹窗样式 */
+        .modal {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.5);
+            z-index: 999;
+            justify-content: center;
+            align-items: center;
+        }
+        .modal-box {
+            background: #fff;
+            padding: 30px;
+            border-radius: 12px;
+            width: 90%;
+            max-width: 320px;
+            text-align: center;
+        }
+        .modal-box p {
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+        .modal-buttons {
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        .modal-btn {
+            padding: 10px 16px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        .modal-btn.poki {
+            background: #f5d742;
+            color: #3b2e1e;
+        }
+        .modal-btn.yandex {
+            background: #4285f4;
+            color: #fff;
+        }
+        .modal-close {
+            margin-top: 12px;
+            background: #ddd;
+        }
     </style>
 </head>
 <body>
@@ -80,12 +128,74 @@
     <button class="btn" onclick="window.open('https://tyy485.github.io/minecraft/', '_blank')">自制我的世界</button>
     <!-- 打砖块 -->
     <button class="btn" onclick="window.open('https://tyy485.github.io/block/', '_blank')">打砖块</button>
+    <!-- 记忆方块 -->
+    <button class="btn" onclick="window.open('https://tyy485.github.io/jyfk/', '_blank')">记忆方块</button>
 
     <!--
         注释规则：更多游戏固定放在整个按钮列表最后一行，后续新增游戏都加在这行上面，不要改动这行位置
     -->
     <!-- 更多游戏 第三方外网 -->
-    <button class="btn" onclick="if(confirm('此为非tyy485网页！如果有任何问题，请不要找我')) window.open('https://poki.com', '_blank')">更多游戏</button>
+    <button class="btn" id="moreBtn">更多游戏</button>
 </div>
+
+<!-- 自定义弹窗 -->
+<div class="modal" id="routeModal">
+    <div class="modal-box">
+        <p>此为非tyy485网页！<br>请选择游戏平台路线：</p>
+        <div class="modal-buttons">
+            <button class="modal-btn poki" id="goPoki">Poki</button>
+            <button class="modal-btn yandex" id="goYandex">Yandex</button>
+        </div>
+        <button class="modal-btn modal-close" id="closeModal">关闭</button>
+    </div>
+</div>
+
+<script>
+    const modal = document.getElementById('routeModal');
+    const moreBtn = document.getElementById('moreBtn');
+    const closeBtn = document.getElementById('closeModal');
+    const goPoki = document.getElementById('goPoki');
+    const goYandex = document.getElementById('goYandex');
+
+    // 打开弹窗
+    moreBtn.addEventListener('click', () => {
+        modal.style.display = 'flex';
+    });
+
+    // 关闭弹窗
+    function closeModal() {
+        modal.style.display = 'none';
+    }
+    closeBtn.addEventListener('click', closeModal);
+
+    // 选择Poki
+    goPoki.addEventListener('click', () => {
+        window.open('https://poki.com', '_blank');
+        closeModal();
+    });
+
+    // 选择Yandex
+    goYandex.addEventListener('click', () => {
+        window.open('https://game.yandex.com', '_blank');
+        closeModal();
+    });
+
+    // 电脑端退格键关闭弹窗
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Backspace' && modal.style.display === 'flex') {
+            e.preventDefault();
+            closeModal();
+        }
+    });
+
+    // 监听浏览器返回键（手机物理返回/导航返回）
+    window.addEventListener('popstate', () => {
+        if (modal.style.display === 'flex') {
+            closeModal();
+            history.pushState(null, '', location.href);
+        }
+    });
+    history.pushState(null, '', location.href);
+</script>
 </body>
 </html>
