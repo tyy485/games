@@ -13,132 +13,154 @@
 
         body {
             min-height: 100vh;
-            background: white;
+            background: linear-gradient(160deg, #f8f9fa, #eef2f7);
             display: flex;
             justify-content: center;
             align-items: center;
             font-family: system-ui, -apple-system, 'Segoe UI', sans-serif;
         }
 
-        /* 极简容器 */
         .container {
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 24px;
-            padding: 20px;
+            gap: 18px;
+            padding: 24px;
+            width: 100%;
+            max-width: 320px;
         }
 
-        /* 黄色按钮 */
+        .title {
+            font-size: 24px;
+            font-weight: 700;
+            color: #2d3748;
+            margin-bottom: 16px;
+            letter-spacing: 1px;
+        }
+
+        /* 高级圆角玻璃按钮 */
         .btn {
-            width: 260px;
-            padding: 16px 0;
-            background-color: #f5d742;
-            border: none;
-            border-radius: 60px;
-            font-size: 22px;
-            font-weight: 600;
-            color: #3b2e1e;
+            width: 100%;
+            padding: 18px 0;
+            background: rgba(255, 255, 255, 0.75);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(220, 220, 220, 0.6);
+            border-radius: 16px;
+            font-size: 18px;
+            font-weight: 500;
+            color: #2d3748;
             text-align: center;
             cursor: pointer;
-            transition: 0.1s linear;
-            box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+            transition: all 0.25s ease;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.06);
             font-family: inherit;
         }
 
-        /* 简单按压效果 */
-        .btn:active {
-            transform: scale(0.97);
-            background-color: #e6c935;
+        .btn:hover {
+            background: rgba(255, 255, 255, 0.9);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 18px rgba(0,0,0,0.08);
         }
 
-        /* 去掉所有多余装饰 */
+        .btn:active {
+            transform: scale(0.97);
+            box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+        }
+
+        /* 更多按钮强调样式 */
+        #moreBtn {
+            background: linear-gradient(135deg, #f5d742, #ffcb2f);
+            color: #3b2e1e;
+            font-weight: 600;
+            border: none;
+        }
+
         a {
             text-decoration: none;
         }
 
-        /* 自定义弹窗样式 */
+        /* 弹窗样式升级 */
         .modal {
             display: none;
             position: fixed;
             inset: 0;
-            background: rgba(0,0,0,0.5);
+            background: rgba(0,0,0,0.55);
             z-index: 999;
             justify-content: center;
             align-items: center;
+            backdrop-filter: blur(4px);
         }
         .modal-box {
-            background: #fff;
-            padding: 30px;
-            border-radius: 12px;
+            background: rgba(255,255,255,0.95);
+            backdrop-filter: blur(12px);
+            padding: 32px;
+            border-radius: 20px;
             width: 90%;
-            max-width: 320px;
+            max-width: 340px;
             text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
         }
         .modal-box p {
-            margin-bottom: 20px;
-            line-height: 1.6;
+            margin-bottom: 24px;
+            line-height: 1.7;
+            color: #333;
+            font-size: 16px;
         }
         .modal-buttons {
             display: flex;
-            gap: 12px;
+            gap: 14px;
             justify-content: center;
             flex-wrap: wrap;
+            margin-bottom: 16px;
         }
         .modal-btn {
-            padding: 10px 16px;
+            padding: 12px 20px;
             border: none;
-            border-radius: 8px;
+            border-radius: 12px;
             cursor: pointer;
             font-size: 16px;
+            transition: 0.2s ease;
         }
         .modal-btn.poki {
             background: #f5d742;
             color: #3b2e1e;
+            font-weight: 500;
         }
         .modal-btn.yandex {
             background: #4285f4;
             color: #fff;
+            font-weight: 500;
         }
         .modal-close {
-            margin-top: 12px;
-            background: #ddd;
+            background: #e5e7eb;
+            color: #444;
+        }
+        .modal-btn:hover {
+            opacity: 0.9;
         }
     </style>
 </head>
 <body>
 <div class="container">
-    <!-- 指尖躲避 -->
-    <button class="btn" onclick="window.open('https://tyy485.github.io/zjdb/', '_blank')">指尖躲避</button>
-    <!-- 贪吃蛇 -->
-    <button class="btn" onclick="window.open('https://tyy485.github.io/tanchishe/', '_blank')">贪吃蛇</button>
-    <!-- 小猫移动 -->
-    <button class="btn" onclick="window.open('https://tyy485.github.io/catmove/', '_blank')">小猫移动</button>
-    <!-- 见缝插针 -->
-    <button class="btn" onclick="window.open('https://tyy485.github.io/jfcz/', '_blank')">见缝插针</button>
-    <!-- 吃豆子 -->
-    <button class="btn" onclick="window.open('https://tyy485.github.io/cdz/', '_blank')">吃豆子</button>
-    <!-- 谷歌小恐龙 -->
-    <button class="btn" onclick="window.open('https://tyy485.github.io/dino/', '_blank')">谷歌小恐龙</button>
-    <!-- 井字棋 -->
-    <button class="btn" onclick="window.open('https://tyy485.github.io/jzq/', '_blank')">井字棋</button>
-    <!-- 第三方我的世界 mcjs.cc -->
-    <button class="btn" onclick="window.open('https://mcjs.cc', '_blank')">我的世界</button>
-    <!-- 自制我的世界 个人仓库版本 -->
-    <button class="btn" onclick="window.open('https://tyy485.github.io/minecraft/', '_blank')">自制我的世界</button>
-    <!-- 打砖块 -->
-    <button class="btn" onclick="window.open('https://tyy485.github.io/block/', '_blank')">打砖块</button>
-    <!-- 记忆方块 -->
-    <button class="btn" onclick="window.open('https://tyy485.github.io/jyfk/', '_blank')">记忆方块</button>
+    <div class="title">tyy485 游戏合集</div>
 
-    <!--
-        注释规则：更多游戏固定放在整个按钮列表最后一行，后续新增游戏都加在这行上面，不要改动这行位置
-    -->
-    <!-- 更多游戏 第三方外网 -->
+    <button class="btn" onclick="window.open('https://tyy485.github.io/zjdb/', '_blank')">指尖躲避</button>
+    <button class="btn" onclick="window.open('https://tyy485.github.io/tanchishe/', '_blank')">贪吃蛇</button>
+    <button class="btn" onclick="window.open('https://tyy485.github.io/catmove/', '_blank')">小猫移动</button>
+    <button class="btn" onclick="window.open('https://tyy485.github.io/jfcz/', '_blank')">见缝插针</button>
+    <button class="btn" onclick="window.open('https://tyy485.github.io/cdz/', '_blank')">吃豆子</button>
+    <button class="btn" onclick="window.open('https://tyy485.github.io/dino/', '_blank')">谷歌小恐龙</button>
+    <button class="btn" onclick="window.open('https://tyy485.github.io/jzq/', '_blank')">井字棋</button>
+    <button class="btn" onclick="window.open('https://mcjs.cc', '_blank')">我的世界</button>
+    <button class="btn" onclick="window.open('https://tyy485.github.io/minecraft/', '_blank')">自制我的世界</button>
+    <button class="btn" onclick="window.open('https://tyy485.github.io/block/', '_blank')">打砖块</button>
+    <button class="btn" onclick="window.open('https://tyy485.github.io/jyfk/', '_blank')">记忆方块</button>
+    <button class="btn" onclick="window.open('https://tyy485.github.io/sgxxl/', '_blank')">水果消消乐</button>
+    <button class="btn" onclick="window.open('https://tyy485.github.io/xmdjs/', '_blank')">小猫打僵尸</button>
+
     <button class="btn" id="moreBtn">更多游戏</button>
 </div>
 
-<!-- 自定义弹窗 -->
 <div class="modal" id="routeModal">
     <div class="modal-box">
         <p>此为非tyy485网页！<br>请选择游戏平台路线：</p>
@@ -157,30 +179,25 @@
     const goPoki = document.getElementById('goPoki');
     const goYandex = document.getElementById('goYandex');
 
-    // 打开弹窗
     moreBtn.addEventListener('click', () => {
         modal.style.display = 'flex';
     });
 
-    // 关闭弹窗
     function closeModal() {
         modal.style.display = 'none';
     }
     closeBtn.addEventListener('click', closeModal);
 
-    // 选择Poki
     goPoki.addEventListener('click', () => {
         window.open('https://poki.com', '_blank');
         closeModal();
     });
 
-    // 选择Yandex
     goYandex.addEventListener('click', () => {
         window.open('https://game.yandex.com', '_blank');
         closeModal();
     });
 
-    // 电脑端退格键关闭弹窗
     document.addEventListener('keydown', (e) => {
         if (e.key === 'Backspace' && modal.style.display === 'flex') {
             e.preventDefault();
@@ -188,7 +205,6 @@
         }
     });
 
-    // 监听浏览器返回键（手机物理返回/导航返回）
     window.addEventListener('popstate', () => {
         if (modal.style.display === 'flex') {
             closeModal();
